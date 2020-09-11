@@ -1,0 +1,142 @@
+{
+  "id": "2062219",
+  "name": "music",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "551844",
+      "name": "竖线",
+      "font_class": "vertical_line",
+      "unicode": "e63a",
+      "unicode_decimal": 58938
+    },
+    {
+      "icon_id": "925481",
+      "name": "列表",
+      "font_class": "liebiao",
+      "unicode": "e64a",
+      "unicode_decimal": 58954
+    },
+    {
+      "icon_id": "1125622",
+      "name": "喜欢",
+      "font_class": "xihuan",
+      "unicode": "e63c",
+      "unicode_decimal": 58940
+    },
+    {
+      "icon_id": "2076215",
+      "name": "音量",
+      "font_class": "yinliang",
+      "unicode": "e87a",
+      "unicode_decimal": 59514
+    },
+    {
+      "icon_id": "3050476",
+      "name": "下载",
+      "font_class": "download",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "3217810",
+      "name": "信号塔",
+      "font_class": "icon-",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "4348068",
+      "name": "电脑",
+      "font_class": "diannao",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    },
+    {
+      "icon_id": "5876278",
+      "name": "下一曲",
+      "font_class": "xiayiqu",
+      "unicode": "e7ff",
+      "unicode_decimal": 59391
+    },
+    {
+      "icon_id": "5876279",
+      "name": "上一曲",
+      "font_class": "shangyiqu",
+      "unicode": "e800",
+      "unicode_decimal": 59392
+    },
+    {
+      "icon_id": "5876907",
+      "name": "关闭",
+      "font_class": "biaoqing",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "6127265",
+      "name": "播放",
+      "font_class": "bofang",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    },
+    {
+      "icon_id": "6540838",
+      "name": "列表",
+      "font_class": "liebiao1",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "6888902",
+      "name": "皮肤",
+      "font_class": "pifu",
+      "unicode": "e666",
+      "unicode_decimal": 58982
+    },
+    {
+      "icon_id": "7450649",
+      "name": "音乐",
+      "font_class": "yinle",
+      "unicode": "e667",
+      "unicode_decimal": 58983
+    },
+    {
+      "icon_id": "10157356",
+      "name": "更多",
+      "font_class": "gengduo",
+      "unicode": "e638",
+      "unicode_decimal": 58936
+    },
+    {
+      "icon_id": "10885634",
+      "name": "暂停",
+      "font_class": "zanting",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    },
+    {
+      "icon_id": "12550614",
+      "name": "矩形",
+      "font_class": "juxing",
+      "unicode": "e636",
+      "unicode_decimal": 58934
+    },
+    {
+      "icon_id": "15726899",
+      "name": "视频",
+      "font_class": "shipin",
+      "unicode": "e635",
+      "unicode_decimal": 58933
+    },
+    {
+      "icon_id": "16584532",
+      "name": "历史",
+      "font_class": "lishi",
+      "unicode": "e770",
+      "unicode_decimal": 59248
+    }
+  ]
+}
