@@ -6,9 +6,10 @@ import element from "element-ui";
 import 'element-ui/lib/theme-chalk/index.css';
 import "./assets/css/index.css"
 import "./assets/fontIcon/iconfont.css"
+import request from "./network/request"
 Vue.use(element)
 Vue.config.productionTip = false
-
+Vue.prototype.request = request;
 new Vue({
   router,
   store,

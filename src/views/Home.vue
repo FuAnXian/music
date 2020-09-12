@@ -7,14 +7,13 @@
             <div class="logo">
               <img
                 width="70%"
-                src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1599825671000&di=ffb1ee5ead6a492a65503f120d162cfc&imgtype=0&src=http%3A%2F%2Fkfwimg.ikafan.com%2Fupload%2F3e%2F78%2F3e78c5fca49d59b1ce826ffb094d488a_thumb.png"
-                alt
+                src="../assets/img/logo.jpg"
               />
             </div>
             <p class="nav-title">在线音乐</p>
             <ul class="nav-ul">
              <li 
-              :class="{'active':isActiveClass === item.id}"
+              :class="{'active':isActiveClass.indexOf(item.path) > 0}"
                v-for="item in menuList.slice(0,3)" 
                :key="item.id" 
                @click="handle(item.id,item.path)"> 
@@ -23,7 +22,7 @@
             <p class="nav-title">我的音乐</p>
             <ul class="nav-ul inIcon">
               <li  
-              :class="{'active':isActiveClass === item.id}"
+              :class="{'active':isActiveClass.indexOf(item.path) > 0}"
               @click="handle(item.id,item.path)"
                v-for="item in menuList.slice(3)" 
                :key="item.id"> 
@@ -33,10 +32,26 @@
         </div>
       </el-aside>
       <el-container>
-        <el-header style="padding-top:10px;height:60px;">
+        <el-header style="padding-top:10px;height:43px;">
           <el-row class="header">
-            <el-col :offset="2" :span="8">
-              <el-input size="sm" :border="5" placeholder="搜索音乐" prefix-icon="el-icon-search" v-model="searchSong"></el-input>
+            <el-col :span="2" class="historyControl">
+              <div @click="up"><i style="font-size:16px;font-weight:500;" class="el-icon-arrow-left"></i></div>
+              <div @click="next"><i style="font-size:16px;font-weight:500;"  class="el-icon-arrow-right"></i></div>
+            </el-col>
+            <el-col   :span="8" style="max-width:370px">
+              <el-input size="small" :border="5"
+               placeholder="搜索音乐" 
+               prefix-icon="el-icon-search" 
+               v-model="searchSong"
+               @input="Sinput"
+               @focus="Sfocus"
+               @blur="Sblur"
+               @change="Schange"></el-input>
+               <search-list 
+               :host-list="hostList"
+               :is-show="isHost" 
+               :search-data="searchData" 
+               v-show="isSearch"/>
             </el-col>
             <el-col :offset="4" :span="10">
                <ul class="header-nav">
@@ -49,46 +64,106 @@
                  <li><i style="font-size:20px;" class="iconfont icon-biaoqing"></i></li>
                </ul>
             </el-col>
-          </el-row>
-         
+          </el-row>      
         </el-header>
-        <el-main>Main</el-main>
+        <el-main style="padding-left:0;">
+        <transition :name="skioName" mode="out-in">
+          <router-view/>
+        </transition>
+        </el-main>
       </el-container>
     </el-container>
   </div>
 </template>
 
 <script>
+import searchList from "../components/searchList/searchList"
 export default {
   name: "Home",
   data() {
     return {
+      isHost:true,
+      searchData:{},
       searchSong: "",
-      isActiveClass:1,
+      isSearch:false,
+      skioName:"view-out",
+      isActiveClass:[],
       menuList:[
-        {name:"音乐馆",id:1,path:"/music",icon:"icon-yinle"},
-        {name:"视频",id:2,path:"/video",icon:"icon-shipin"},
-        {name:"电台",id:3,path:"/music",icon:"icon-icon-"},
-        {name:"我喜欢",id:4,path:"/music",icon:"icon-xihuan"},
-        {name:"本地下载",id:5,path:"/music",icon:"icon-diannao"},
-        {name:"播放历史",id:6,path:"/music",icon:"icon-lishi"},
-        {name:"试听列表",id:7,path:"/music",icon:"icon-liebiao"},
+        {name:"音乐馆",id:1,path:"musicHeall",icon:"icon-yinle"},
+        {name:"视频",id:2,path:"videoView",icon:"icon-shipin"},
+        {name:"电台",id:3,path:"broad",icon:"icon-icon-"},
+        {name:"我喜欢",id:4,path:"myLove",icon:"icon-xihuan"},
+        {name:"本地下载",id:5,path:"localDown",icon:"icon-diannao"},
+        {name:"播放历史",id:6,path:"playHistory",icon:"icon-lishi"},
+        {name:"试听列表",id:7,path:"auditionList",icon:"icon-liebiao"},
       ],
+      hostList:[]
     };
   },
-  components: {},
+  watch:{
+    $route(path){
+       let arr = this.$route.path.split("/");
+        this.isActiveClass = arr;
+    }
+  },
+  components: {searchList},
+  created(){
+    this.request.searchHot()
+    .then(res => {
+      this.hostList = res.data
+    })
+  },
   mounted() {
-    console.log();
+    this.handle(null,this.$route.name)
+    let arr = this.$route.path.split("/");
+    this.isActiveClass = arr; 
   },
   methods: {
-    handle(id,path){
-      this.isActiveClass = id;
-    }
+    handle(id,path){  
+      if(this.$route.name === path) return;
+      this.$router.push({name:path});   
+    },
+    up(){
+       this.$router.back();
+    },
+    next(){
+        this.$router.go(1);
+    },
+   Sfocus(){
+     this.isSearch  = true;
+   },
+   Sblur(){
+    this.isSearch  = false;
+   },
+   Schange(){
+
+   },
+   Sinput(){
+     this.isHost = this.searchSong === "";
+     if(this.searchSong === "")return;
+    this.request
+    .search(this.searchSong)
+    .then(res =>{
+      this.searchData = res.result;
+    })
+   }
   },
 };
 </script>
 
 <style lang="css" scoped>
+.view-out-enter-active, .view-out-leave-active{ 
+      transition: all 0.2s;  
+      opacity: 1;
+}
+.view-out-enter{
+   transform: translateX(10%);
+   opacity: 0;
+}
+ .view-out-leave-to{
+     transform: translateX(0%);
+     opacity: 0;
+}
 .el-aside {
   background-color: #fff;
 }
@@ -104,11 +179,24 @@ export default {
 .p-left {
   padding-left: 10px;
 }
+.historyControl{
+  display: flex;
+  justify-content: space-between;
+}
+.historyControl div{
+  flex: 1;
+  text-align: left;
+}
+.historyControl div i{
+  cursor: pointer;
+}
 .menu {
   padding: 20px 20px 10px 30px;
 }
 .el-container {
-  background: #f7f3f3;
+  background: #f6fffe;
+  box-shadow: 0px 0px 10px rgb(230, 230, 230);
+  border-radius: 10px;
 }
 .nav-title {
   margin-top: 25px;

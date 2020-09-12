@@ -1,13 +1,13 @@
 import axios from "axios"
-
+//qq音乐:https://api.qq.jsososo.com/
 const req  = axios.create({
-    baseURL:"http://musicapi.leanapp.cn",
+    baseURL:"https://autumnfish.cn/",//https://autumnfish.cn/
     timeout:9000,
     method: "post",
+    withCredentials:true
 });
 
 req.interceptors.request.use(function(config,req){
-    console.log(config)
     return config;
 })
 req.interceptors.response.use(function(data,e){
