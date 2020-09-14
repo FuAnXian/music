@@ -4,7 +4,10 @@ const req  = axios.create({
     baseURL:"https://autumnfish.cn/",//https://autumnfish.cn/
     timeout:9000,
     method: "post",
-    withCredentials:true
+    withCredentials:true,
+    header:{
+        "Access-Control-Allow-Origin":"*"
+    }
 });
 
 req.interceptors.request.use(function(config,req){

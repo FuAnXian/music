@@ -18,10 +18,6 @@ const routes = [
     component: musicHeall,
     children:[
       {
-        path:"/",
-        redirect:"jingxuan"
-      },
-      {
         path:"jingxuan",
         name:"jingxuan",
         component:()=> import("../views/musicHeall/children/jingxuan.vue")

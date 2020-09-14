@@ -32,9 +32,9 @@
         </div>
       </el-aside>
       <el-container>
-        <el-header style="padding-top:10px;height:43px;">
+        <el-header style="padding:10px 30px 10px 30px ;height:53px;">
           <el-row class="header">
-            <el-col :span="2" class="historyControl">
+            <el-col :span="3" class="historyControl">
               <div @click="up"><i style="font-size:16px;font-weight:500;" class="el-icon-arrow-left"></i></div>
               <div @click="next"><i style="font-size:16px;font-weight:500;"  class="el-icon-arrow-right"></i></div>
             </el-col>
@@ -53,7 +53,7 @@
                :search-data="searchData" 
                v-show="isSearch"/>
             </el-col>
-            <el-col :offset="4" :span="10">
+            <el-col :offset="4" :span="11">
                <ul class="header-nav">
                  <li><i class="el-icon-s-custom"></i></li>
                  <li><i class="iconfont icon-pifu"></i> </li>
@@ -66,7 +66,7 @@
             </el-col>
           </el-row>      
         </el-header>
-        <el-main style="padding-left:0;">
+        <el-main style="padding:20px 30px 20px 0px;">
         <transition :name="skioName" mode="out-in">
           <router-view/>
         </transition>
@@ -168,8 +168,8 @@ export default {
   background-color: #fff;
 }
 .home {
-  width: 80%;
-  min-width: 800px;
+  width: 70%;
+  min-width: 1120px;
   margin: 50px auto;
   border-radius: 5px;
   box-shadow: 1px 1px 5px #f1f1f1;

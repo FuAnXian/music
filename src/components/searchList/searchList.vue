@@ -90,6 +90,7 @@ export default {
 <style scoped>
 .box {
   position: absolute;
+  z-index: 9999;
   top: 33px;
   background-color: #fff;
   border: solid 1px rgb(235, 235, 235);

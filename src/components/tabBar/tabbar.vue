@@ -13,7 +13,7 @@
         <a style="transition: all 0.3s;" href="javascript:;">{{item.name}}</a>
       </li>
     </ul>
-    <div>
+    <div  style="padding:10px 0 0 30px;">
       <keep-alive>
         <router-view />
       </keep-alive>
@@ -66,12 +66,12 @@ export default {
 <style scoped>
 .tabbar {
   display: flex;
-  padding: 0 0 10px 0px;
+  padding: 0px 0 12px 10px;
   position: relative;
 }
 .tabbar li {
   padding: 0 20px;
-  font-size: 13px;
+  font-size: 15px;
 }
 .tabbar li.active a {
     font-weight: 600;
@@ -79,7 +79,7 @@ export default {
 }
 .tabbar .progress {
   position: absolute;
-  left: 0px;
+  left: 20px;
   bottom: 0px;
   height: 3px;
   border-radius: 5px;

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div  style="padding-left:20px;">
       <h1>一月</h1>
   </div>
 </template>

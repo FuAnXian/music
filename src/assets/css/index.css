@@ -8,6 +8,7 @@ html,body{
 *{
     padding: 0;
     margin: 0;
+    font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
 }
 ul,li{  
     list-style: none;
@@ -34,3 +35,7 @@ ul,li{
      color: #2a2a2a;
      text-decoration:none;
  }
+ .el-carousel__indicators--outside button {
+    background-color: #1ccfa5;
+    opacity: .24;
+}
