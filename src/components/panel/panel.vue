@@ -72,7 +72,7 @@ export default {
       } else {
         this.indexPage = 0;
       }
-    },
+    }
   },
   computed: {
     list() {

@@ -9,7 +9,7 @@
           <span><i class="el-icon-headset"></i> {{item.playCount | count}}</span>
           <img :src="item.coverImgUrl" :alt="item.name" />
         </div>
-        <div class="ol">
+        <div class="ol" @click="getid(item.id)">
           <h3>{{item.name}}</h3>
           <ol>
             <li v-for="(items,i) in item.tracks" :key="i"><span>{{i + 1}} {{items.first}}</span>&nbsp;
@@ -31,19 +31,23 @@ export default {
   },
   created() {
     this.request.toplist().then((res) => {
-      console.log(res);
       let artis = res.artistToplist;
       this.ranking = res.list.filter((item) => item.tracks.length > 0);
-      // this.ranking.push({
-      //   name:artis.name,
-      //   tracks:artis.artists
-      // })
-      console.log(this.ranking);
     });
   },
   filters:{
     count(value){
       return Math.round(value / 10000)+"万"
+    }
+  },
+  methods:{
+    getid(id){
+      this.$router.push({
+        name:"songList",
+        params:{
+          id
+        }
+      })
     }
   }
 };

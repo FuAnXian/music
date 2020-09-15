@@ -38,9 +38,12 @@ const request = {
         })
     },
     //推荐MV
-    personalizedMv(){
+    songDetail(ids){
         return http({
-            url:"/personalized/mv"
+            url:"/song/detail",
+            params:{
+                ids
+            }
         })
     },
     //独家放送
@@ -56,6 +59,15 @@ const request = {
     toplist(){
         return http({
             url:"/toplist/detail"
+        })
+    },
+    //获取歌单详情
+    playList(id){
+        return http({
+            url:"/playlist/detail",
+            params:{
+                id
+            }
         })
     }
 }

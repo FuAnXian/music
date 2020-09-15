@@ -5,28 +5,31 @@
         <div class="menu">
           <nav class="p-left">
             <div class="logo">
-              <img
-                width="70%"
-                src="../assets/img/logo.jpg"
-              />
+              <img width="70%" src="../assets/img/logo.jpg" />
             </div>
             <p class="nav-title">在线音乐</p>
             <ul class="nav-ul">
-             <li 
-              :class="{'active':isActiveClass.indexOf(item.path) > 0}"
-               v-for="item in menuList.slice(0,3)" 
-               :key="item.id" 
-               @click="handle(item.id,item.path)"> 
-               <i :class="['iconfont', item.icon]"></i> {{item.name}}</li>
+              <li
+                :class="{'active':isActiveClass.indexOf(item.path) > 0}"
+                v-for="item in menuList.slice(0,3)"
+                :key="item.id"
+                @click="handle(item.id,item.path)"
+              >
+                <i :class="['iconfont', item.icon]"></i>
+                {{item.name}}
+              </li>
             </ul>
             <p class="nav-title">我的音乐</p>
             <ul class="nav-ul inIcon">
-              <li  
-              :class="{'active':isActiveClass.indexOf(item.path) > 0}"
-              @click="handle(item.id,item.path)"
-               v-for="item in menuList.slice(3)" 
-               :key="item.id"> 
-               <i :class="['iconfont', item.icon]"></i> {{item.name}}</li>
+              <li
+                :class="{'active':isActiveClass.indexOf(item.path) > 0}"
+                @click="handle(item.id,item.path)"
+                v-for="item in menuList.slice(3)"
+                :key="item.id"
+              >
+                <i :class="['iconfont', item.icon]"></i>
+                {{item.name}}
+              </li>
             </ul>
           </nav>
         </div>
@@ -35,134 +38,158 @@
         <el-header style="padding:10px 30px 10px 30px ;height:53px;">
           <el-row class="header">
             <el-col :span="3" class="historyControl">
-              <div @click="up"><i style="font-size:16px;font-weight:500;" class="el-icon-arrow-left"></i></div>
-              <div @click="next"><i style="font-size:16px;font-weight:500;"  class="el-icon-arrow-right"></i></div>
+              <div @click="up">
+                <i style="font-size:16px;font-weight:500;" class="el-icon-arrow-left"></i>
+              </div>
+              <div @click="next">
+                <i style="font-size:16px;font-weight:500;" class="el-icon-arrow-right"></i>
+              </div>
             </el-col>
-            <el-col   :span="8" style="max-width:370px">
-              <el-input size="small" :border="5"
-               placeholder="搜索音乐" 
-               prefix-icon="el-icon-search" 
-               v-model="searchSong"
-               @input="Sinput"
-               @focus="Sfocus"
-               @blur="Sblur"
-               @change="Schange"></el-input>
-               <search-list 
-               :host-list="hostList"
-               :is-show="isHost" 
-               :search-data="searchData" 
-               v-show="isSearch"/>
+            <el-col :span="8" style="max-width:370px">
+              <el-input
+                size="small"
+                :border="5"
+                placeholder="搜索音乐"
+                prefix-icon="el-icon-search"
+                v-model="searchSong"
+                @input="Sinput"
+                @focus="Sfocus"
+                @blur="Sblur"
+                @change="Schange"
+              ></el-input>
+              <search-list
+                :host-list="hostList"
+                :is-show="isHost"
+                :search-data="searchData"
+                v-show="isSearch"
+              />
             </el-col>
             <el-col :offset="4" :span="11">
-               <ul class="header-nav">
-                 <li><i class="el-icon-s-custom"></i></li>
-                 <li><i class="iconfont icon-pifu"></i> </li>
-                 <li><i class="iconfont icon-liebiao1"></i></li>
-                 <li><i class="iconfont icon-vertical_line"></i></li>
-                 <li style="transform:rotateZ(90deg)"><i class="iconfont icon-vertical_line"></i></li>
-                 <li><i style="font-size:14px;" class="iconfont icon-juxing"></i></li>
-                 <li><i style="font-size:20px;" class="iconfont icon-biaoqing"></i></li>
-               </ul>
+              <ul class="header-nav">
+                <li>
+                  <i class="el-icon-s-custom"></i>
+                </li>
+                <li>
+                  <i class="iconfont icon-pifu"></i>
+                </li>
+                <li>
+                  <i class="iconfont icon-liebiao1"></i>
+                </li>
+                <li>
+                  <i class="iconfont icon-vertical_line"></i>
+                </li>
+                <li style="transform:rotateZ(90deg)">
+                  <i class="iconfont icon-vertical_line"></i>
+                </li>
+                <li>
+                  <i style="font-size:14px;" class="iconfont icon-juxing"></i>
+                </li>
+                <li>
+                  <i style="font-size:20px;" class="iconfont icon-biaoqing"></i>
+                </li>
+              </ul>
             </el-col>
-          </el-row>      
+          </el-row>
         </el-header>
-        <el-main style="padding:20px 30px 20px 0px;">
-        <transition :name="skioName" mode="out-in">
-          <router-view/>
-        </transition>
+        <el-main style="position:relative;padding:0">
+          <div style="padding:20px 30px 0px 0px;">
+            <transition :name="skioName" mode="out-in">
+              <router-view />
+            </transition>
+          </div>
         </el-main>
+          <div class="paly-control">
+            <play-control/>
+          </div>
       </el-container>
     </el-container>
   </div>
 </template>
 
 <script>
-import searchList from "../components/searchList/searchList"
+import searchList from "../components/searchList/searchList";
+import playControl from "../components/playControl/playControl"
 export default {
   name: "Home",
   data() {
     return {
-      isHost:true,
-      searchData:{},
+      isHost: true,
+      searchData: {},
       searchSong: "",
-      isSearch:false,
-      skioName:"view-out",
-      isActiveClass:[],
-      menuList:[
-        {name:"音乐馆",id:1,path:"musicHeall",icon:"icon-yinle"},
-        {name:"视频",id:2,path:"videoView",icon:"icon-shipin"},
-        {name:"电台",id:3,path:"broad",icon:"icon-icon-"},
-        {name:"我喜欢",id:4,path:"myLove",icon:"icon-xihuan"},
-        {name:"本地下载",id:5,path:"localDown",icon:"icon-diannao"},
-        {name:"播放历史",id:6,path:"playHistory",icon:"icon-lishi"},
-        {name:"试听列表",id:7,path:"auditionList",icon:"icon-liebiao"},
+      isSearch: false,
+      skioName: "view-out",
+      isActiveClass: [],
+      menuList: [
+        { name: "音乐馆", id: 1, path: "musicHeall", icon: "icon-yinle" },
+        { name: "视频", id: 2, path: "videoView", icon: "icon-shipin" },
+        { name: "电台", id: 3, path: "broad", icon: "icon-icon-" },
+        { name: "我喜欢", id: 4, path: "myLove", icon: "icon-xihuan" },
+        { name: "本地下载", id: 5, path: "localDown", icon: "icon-diannao" },
+        { name: "播放历史", id: 6, path: "playHistory", icon: "icon-lishi" },
+        { name: "试听列表", id: 7, path: "auditionList", icon: "icon-liebiao" },
       ],
-      hostList:[]
+      hostList: [],
     };
   },
-  watch:{
-    $route(path){
-       let arr = this.$route.path.split("/");
-        this.isActiveClass = arr;
-    }
+  watch: {
+    $route(path) {
+      let arr = this.$route.path.split("/");
+      this.isActiveClass = arr;
+    },
   },
-  components: {searchList},
-  created(){
-    this.request.searchHot()
-    .then(res => {
-      this.hostList = res.data
-    })
+  components: { searchList,playControl },
+  created() {
+    this.request.searchHot().then((res) => {
+      this.hostList = res.data;
+    });
   },
   mounted() {
-    this.handle(null,this.$route.name)
+    this.handle(null, this.$route.name);
     let arr = this.$route.path.split("/");
-    this.isActiveClass = arr; 
+    this.isActiveClass = arr;
   },
   methods: {
-    handle(id,path){  
-      if(this.$route.name === path) return;
-      this.$router.push({name:path});   
+    handle(id, path) {
+      if (this.$route.name === path) return;
+      this.$router.push({ name: path });
     },
-    up(){
-       this.$router.back();
+    up() {
+      this.$router.back();
     },
-    next(){
-        this.$router.go(1);
+    next() {
+      this.$router.go(1);
     },
-   Sfocus(){
-     this.isSearch  = true;
-   },
-   Sblur(){
-    this.isSearch  = false;
-   },
-   Schange(){
-
-   },
-   Sinput(){
-     this.isHost = this.searchSong === "";
-     if(this.searchSong === "")return;
-    this.request
-    .search(this.searchSong)
-    .then(res =>{
-      this.searchData = res.result;
-    })
-   }
+    Sfocus() {
+      this.isSearch = true;
+    },
+    Sblur() {
+      this.isSearch = false;
+    },
+    Schange() {},
+    Sinput() {
+      this.isHost = this.searchSong === "";
+      if (this.searchSong === "") return;
+      this.request.search(this.searchSong).then((res) => {
+        this.searchData = res.result;
+      });
+    },
   },
 };
 </script>
 
 <style lang="css" scoped>
-.view-out-enter-active, .view-out-leave-active{ 
-      transition: all 0.2s;  
-      opacity: 1;
+.view-out-enter-active,
+.view-out-leave-active {
+  transition: all 0.2s;
+  opacity: 1;
 }
-.view-out-enter{
-   transform: translateX(10%);
-   opacity: 0;
+.view-out-enter {
+  transform: translateX(10%);
+  opacity: 0;
 }
- .view-out-leave-to{
-     transform: translateX(0%);
-     opacity: 0;
+.view-out-leave-to {
+  transform: translateX(0%);
+  opacity: 0;
 }
 .el-aside {
   background-color: #fff;
@@ -179,15 +206,15 @@ export default {
 .p-left {
   padding-left: 10px;
 }
-.historyControl{
+.historyControl {
   display: flex;
   justify-content: space-between;
 }
-.historyControl div{
+.historyControl div {
   flex: 1;
   text-align: left;
 }
-.historyControl div i{
+.historyControl div i {
   cursor: pointer;
 }
 .menu {
@@ -205,17 +232,17 @@ export default {
   font-size: 14px;
   cursor: default;
 }
-.nav-ul > li.active{
-     background-image: linear-gradient(to right, #32d8b3, #17cda2);
+.nav-ul > li.active {
+  background-image: linear-gradient(to right, #32d8b3, #17cda2);
   color: #fff;
-  border-radius:5px ;
+  border-radius: 5px;
 }
-.active i{
+.active i {
   color: #fff;
 }
-.nav-ul > li.active:hover{
+.nav-ul > li.active:hover {
   color: #fff;
-    background-image: linear-gradient(to right, #32d8b3, #17cda2);
+  background-image: linear-gradient(to right, #32d8b3, #17cda2);
 }
 .nav-ul,
 .nav-ul > li {
@@ -226,7 +253,7 @@ export default {
   transform: translateX(-20px);
   cursor: pointer;
 }
-.inIcon li i{
+.inIcon li i {
   font-size: 14px;
 }
 .nav-ul > li:hover {
@@ -237,19 +264,27 @@ export default {
   display: flex;
   align-items: center;
 }
-.header-nav{
+.header-nav {
   width: 100%;
   display: flex;
   justify-content: flex-end;
 }
-.header-nav li{   
+.header-nav li {
   padding: 0 10px;
 }
-.header-nav li:hover i{
+.header-nav li:hover i {
   color: var(--primary-color);
 }
-.header-nav li i{
+.header-nav li i {
   transition: all 0.3s;
-   font-size: 18px;
+  font-size: 18px;
+}
+.paly-control {
+  position: relative;
+  bottom:0px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-color: #fff;
 }
 </style>

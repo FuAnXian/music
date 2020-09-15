@@ -82,6 +82,11 @@ const routes = [
     path: '/videoView',
     name: 'videoView',
     component: videoView
+  },
+  {
+    path:"/songList/:id",
+    name:"songList",
+    component:()=>import("../components/playList/songList.vue")
   }
 ]
 
