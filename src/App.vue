@@ -10,7 +10,11 @@ import htpp from "./network/index";
 export default {
   name: "app",
   data() {
-    return {}
+    return {
+    }
+  },
+  mounted(){
+    this.$store.state.song = this.$refs.audio;
   },
   components:{
     home

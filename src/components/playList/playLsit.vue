@@ -18,7 +18,7 @@
   white-space: nowrap;"
             >{{item.name}}</div>
             <div style="width:130px;" class="contorl">
-              <span class="el-icon-video-play"></span>
+              <span @click="palySong(item)" class="el-icon-video-play"></span>
               <span class="el-icon-circle-plus-outline"></span>
               <span class="el-icon-download"></span>
               <span class="el-icon-chat-dot-round"></span>
@@ -49,15 +49,16 @@ export default {
     },
   },
   created() {
-    console.log(this.list);
   },
   data() {
     return {};
   },
   filters: {
+    //格式化序号
     foamtIndex(index) {
       return index < 9 ? "0" + (index + 1) : index + 1;
     },
+    //格式化时间
     foramTime(tiems) {
       let time = Math.round(tiems / 1000);
       let miute = Math.floor(time / 60);
@@ -72,6 +73,7 @@ export default {
     },
   },
   methods: {
+    //格式化名字
     formattingName(ar) {
       let index = ar.length;
       let name = "";
@@ -80,6 +82,9 @@ export default {
       });
       return name.slice(0, -1);
     },
+    palySong(params){
+      this.$event.$emit("play",params);
+    }
   },
 };
 </script>

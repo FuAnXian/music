@@ -37,7 +37,7 @@ const request = {
             url:"/personalized/djprogram"
         })
     },
-    //推荐MV
+    //歌曲详情
     songDetail(ids){
         return http({
             url:"/song/detail",
@@ -68,6 +68,15 @@ const request = {
             params:{
                 id
             }
+        })
+    },
+    //获取音乐url
+    songUrl(id){
+        return http({
+             url:"/song/url",
+             params:{
+                 id
+             }
         })
     }
 }

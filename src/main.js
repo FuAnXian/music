@@ -10,6 +10,7 @@ import request from "./network/request"
 Vue.use(element)
 Vue.config.productionTip = false
 Vue.prototype.request = request;
+Vue.prototype.$event = new Vue();
 const app = new Vue({
   router,
   store,
